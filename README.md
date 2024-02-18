@@ -1,4 +1,4 @@
-# Rental book code challenge - code generator instructions
+# Rental book code challenge - code instructions
 
 1. My Dev enviroment 👍
    - Windows 10
