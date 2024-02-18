@@ -107,7 +107,7 @@
 18. Find in the project root folder, the Postman folder with all examples to call all rest services available.
 	- Import the file ``` Rental books.postman_collection.json  ``` to use it on Postman.
 		
-19. Rest services requested on code challenge. - ``` check the postman folder the examples. ```
+19. Rest services requested on code challenge. - ``` check the postman folder to use the examples. ```
 	- Create a customer -> ``` http://localhost:8080/customer/ ```
 	- Create a book type (category) -> ``` http://localhost:8080/bookType ```
 	- Create a book -> ``` http://localhost:8080/book/ ```
