@@ -1,4 +1,4 @@
-http://localhost:8080/swagger-ui.html# Rental book code challenge - code generator instructions
+# Rental book code challenge - code generator instructions
 
 1. My Dev enviroment 👍
    - Windows 10
