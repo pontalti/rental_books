@@ -2,6 +2,7 @@ package com.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +59,13 @@ public class BookController {
 	public @ResponseBody ResponseEntity<GenericResponseDTO<List<BookDTO>>> findAllOwned() {
 		var genericResponse = this.bookService.findAllOwned();
 		var response = new ResponseEntity<GenericResponseDTO<List<BookDTO>>>(genericResponse, HttpStatus.OK);
+		return response;
+	}
+	
+	@GetMapping(value = { "/all/owned/pagination/{offset}/{pageSize}", "/all/owned/pagination/{offset}/{pageSize}/" }, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<GenericResponseDTO<Page<BookDTO>>> findAllOwnedPagination(@PathVariable int offset, @PathVariable int pageSize) {
+		var genericResponse = this.bookService.findAllOwnedPagination(offset, pageSize);
+		var response = new ResponseEntity<GenericResponseDTO<Page<BookDTO>>>(genericResponse, HttpStatus.OK);
 		return response;
 	}
 	

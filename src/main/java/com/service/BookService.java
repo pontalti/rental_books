@@ -2,6 +2,8 @@ package com.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.dto.BookDTO;
 import com.dto.GenericResponseDTO;
 import com.records.BookRecord;
@@ -19,6 +21,8 @@ public interface BookService {
     public GenericResponseDTO<List<BookDTO>> findByTitleLike(final String title);
     
     public GenericResponseDTO<List<BookDTO>> findAllOwned();
+    
+    public GenericResponseDTO<Page<BookDTO>> findAllOwnedPagination(int offset, int pageSize);
 
     public GenericResponseDTO<List<BookDTO>> findAllAvailable();
     

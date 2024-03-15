@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -119,6 +121,23 @@ public class BookServiceImpl implements BookService{
 		return GenericResponseDTO.empty("Books data not found.");
 	}
 	
+	@Override
+	public GenericResponseDTO<Page<BookDTO>> findAllOwnedPagination(int offset, int pageSize) {
+		Page<BookDTO> bookDtos;
+		Page<BookEntity> bookEntities = this.bookRepository.findAll(PageRequest.of(offset, pageSize));
+		if( !bookEntities.isEmpty() ) {
+			bookDtos = bookEntities.map(i->{
+					BookDTO dto = new BookDTO();
+					BeanUtil.copyProperties(i, dto);
+					extractBookTypeDTO(i, dto);
+					return dto;
+				}
+			);
+			return GenericResponseDTO.success(bookDtos);
+		}
+		return GenericResponseDTO.empty("Books data not found.");
+	}
+	
 	private void extractDTOs(final List<BookDTO> bookDTOs, final List<BookEntity> l) {
 		l.stream().forEach(b-> {
 				BookDTO dto = new BookDTO();
@@ -155,4 +174,5 @@ public class BookServiceImpl implements BookService{
 		}
 		return GenericResponseDTO.empty("Unavailable books data, not found.");
 	}
+
 }
